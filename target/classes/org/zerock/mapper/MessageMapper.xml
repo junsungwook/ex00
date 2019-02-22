@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper    
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- messageMapper.xml -->
+ <!-- 다른 mapper와 중복되지 않도록 네임스페이스를 쓴다  -->
+ <mapper namespace="org.zerock.mapper.MessageMapper">
+ 	<insert id="create" parameterType="org.zerock.domain.MessageVO">
+ 		insert into tbl_message(mno,targetid,sender,message)
+ 		values(msg_seq.nextval,#{targetid},#{sender},#{message})
+ 	</insert>
+ </mapper>

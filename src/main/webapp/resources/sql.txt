@@ -1,0 +1,75 @@
+create table tbl_sample1(col1 varchar2(50));
+create table tbl_sample2(col2 varchar2(50));
+commit;
+
+
+
+
+create table tbl_message(
+    mno number,
+    targetid varchar2(50),
+    sender varchar2(50),
+    message varchar2(250),
+    opendate date,
+    senddate date default sysdate
+ );
+ 
+ create table tbl_user(
+    userid varchar2(50),
+    userpw varchar2(50),
+    username varchar2(50),
+    userpoint number default 0
+    
+    );
+    
+    create sequence msg_seq
+    start with 1
+    increment by 1;
+    
+    insert into tbl_user(userid,userpw,username) values('user1','user1','Á¡ÁÖ¿µ');
+    insert into tbl_user(userid,userpw,username) values('user2','user2','±¤¼ö');
+    insert into tbl_user(userid,userpw,username) values('user3','user3','±è±â±Ô');
+    insert into tbl_user(userid,userpw,username) values('user4','user4','ÃÖ»çÀå');
+    
+    select *
+    from tbl_user;
+    
+    
+    
+    create table tbl_board(
+        bno number(10,0),
+        title varchar2(200) not null,
+        content varchar2(2000) not null,
+        writer varchar2(50) not null,
+        regdate date default sysdate,
+        updatedate date default sysdate
+    );
+    
+    
+    alter table tbl_board add constraint pk_board
+    primary key (bno);
+    
+    create table tbl_reply(
+        rno number(10,0),
+        bno number(10,0) not null,
+        reply varchar2(1000) not null,
+        replyer varchar2(50) not null,
+        replyDate date default sysdate,
+        updateDate date default sysdate
+    );
+    
+    alter table tbl_reply
+    add CONSTRAINT pk_reply primary key (rno);
+    
+    alter table tbl_reply
+    add CONSTRAINT fk_reply_board foreign key (bno) REFERENCES tbl_board (bno);
+    
+    
+ create sequence seq_board
+    start with 1
+    increment by 1;
+    
+        
+ create sequence seq_reply
+    start with 1
+    increment by 1;
